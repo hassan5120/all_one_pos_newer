@@ -1822,9 +1822,15 @@ function pos_order_tax(price_total, discount) {
     var calculation_type = 'percentage';
     var calculation_amount = __read_number($('#tax_calculation_amount'));
     var total_amount = price_total - discount;
+    var gst=0
+    var wht=0
 
     if (tax_rate_id) {
-        var order_tax = __calculate_amount(calculation_type, calculation_amount, total_amount);
+        gst=(total_amount *100)/19.5
+        total_gst=total_amount+gst
+        wht=(total_gst*100)/15
+        var order_tax=gst+wht
+        //var order_tax = __calculate_amount(calculation_type, calculation_amount, total_amount);
     } else {
         var order_tax = 0;
     }
